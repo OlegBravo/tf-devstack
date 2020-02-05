@@ -88,6 +88,12 @@ services:
 
   # misc
 
+   docker:
+    charm cs:containers/docker
+    num_units:1
+    to:
+    - 0
+
   ubuntu:
     charm: "cs:{{ UBUNTU_SERIES }}/ubuntu"
     num_units: 1
@@ -98,7 +104,13 @@ services:
 
 relations:
 
-- [ nova-compute:amqp, rabbitmq-server:amqp ]
+- [docker, glance]
+- [docker, keystone]
+- [docker, mysql]
+- [docker, neutron-api]
+- [docker, heat]
+- [docker, nova-cloud-controller]
+- [docker, openstack-dashboard]
 - [ keystone:shared-db, mysql:shared-db ]
 - [ nova-cloud-controller:identity-service, keystone:identity-service ]
 - [ glance:identity-service, keystone:identity-service ]
