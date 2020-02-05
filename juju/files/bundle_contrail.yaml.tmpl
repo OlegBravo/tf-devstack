@@ -16,7 +16,6 @@ services:
       cassandra-minimum-diskgb: "4"
       cassandra-jvm-extra-opts: "-Xms1g -Xmx2g"
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
     expose: true
     to:
@@ -30,7 +29,6 @@ services:
       cassandra-minimum-diskgb: "4"
       cassandra-jvm-extra-opts: "-Xms1g -Xmx2g"
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
     expose: true
     to:
@@ -42,7 +40,6 @@ services:
     options:
       log-level: "SYS_DEBUG"
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
     expose: true
     to:
@@ -53,7 +50,6 @@ services:
     options:
       log-level: "SYS_DEBUG"
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
 {%- if ORCHESTRATOR == 'openstack' %}
   contrail-keystone-auth:
@@ -67,7 +63,6 @@ services:
     series: "{{ UBUNTU_SERIES }}"
     options:
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
 {%- elif ORCHESTRATOR == 'kubernetes' %}
   contrail-kubernetes-master:
@@ -77,7 +72,6 @@ services:
       log-level: 'SYS_DEBUG'
       service_subnets: '10.96.0.0/12'
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
       cluster_name: test_cluster
   contrail-kubernetes-node:
@@ -86,7 +80,6 @@ services:
     options:
       log-level: 'SYS_DEBUG'
       docker-registry: "{{ CONTAINER_REGISTRY }}"
-      docker-registry-insecure: true
       image-tag: "{{ CONTRAIL_CONTAINER_TAG }}"
 {%- endif %}
 
